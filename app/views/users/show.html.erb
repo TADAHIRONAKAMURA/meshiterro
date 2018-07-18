@@ -1,0 +1,15 @@
+<div class="profile-container">
+    <h3 class="profile-name"><%= @user.name %></h3>
+
+<!-- 画像を格納しているカラムを持つインスタンス, :画像が格納されているカラム, :縦横の大きさ px ,画像の拡張子の指定, ~~~-->
+    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+ <!-- fallback:は画像データがカラムにない場合に表示される画像を指定、今回は、app/assets/imagesにあらかじめ用意している画像を指定 -->
+
+	<% if @user.id == current_user.id %>
+        <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "pull-right" %></p>
+    <% end %>
+
+</div>
+
+<%= render 'post_images/list', post_images: @post_images %>  
+
